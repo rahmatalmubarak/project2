@@ -43,9 +43,9 @@ Route::delete('/transaction/{transaction}', 'TransactionController@delete');
 
 //Detail
 Route::get('/detail/{detail}', 'DetailController@show');
-Route::get('/detail/cetak/{detail}', 'DetailController@cetak');
+Route::middleware(['auth:sanctum', 'verified'])->get('/detail/cetak/{detail}', 'DetailController@cetak');
 
-Route::get('/home','HomeController@index');
+Route::middleware(['auth:sanctum', 'verified'])->get('/home','HomeController@index');
 
 //
 
@@ -55,3 +55,4 @@ Route::get('/tes',function(){
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
